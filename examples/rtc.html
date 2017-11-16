@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rtc</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            margin: 0 auto;
+            width: 800px;
+        }
+
+    </style>
+    <script src="../dist/KMedia.js"></script>
+</head>
+<body>
+<div id="container"></div>
+
+<script>
+    var media = new KMedia({
+        el:document.querySelector('#container'),
+        realtime:true,
+        url:'http://127.0.0.1:8080',
+        stream:'rtsp://10.82.0.199/id=0'
+    });
+</script>
+</body>
+</html>

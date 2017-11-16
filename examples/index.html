@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>simple controls</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            margin: 0 auto;
+            width: 800px;
+        }
+        /*  simple-controls.css */
+        .playOrPause,.volumeOnOrOff,.fullScreen{
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            opacity: 1;
+            margin: 4px 0;
+        }
+        .playOrPause:hover,.volumeOnOrOff:hover,.volumeRange:hover,.fullScreen:hover{
+            opacity: 0.8;
+        }
+        .playOrPause{
+            left: 16px;
+        }
+        .volumeOnOrOff{
+            left: 50px;
+        }
+        .fullScreen{
+            right: 16px;
+        }
+        .volumeRange{
+            position: relative;
+            outline: none;
+            width: 60px;
+            -webkit-appearance:none!important;
+            border-radius:3px;
+            height:4px;
+            left:84px;
+            top:6px;
+            cursor: pointer;
+        }
+        .volumeRange::-webkit-slider-thumb {
+            -webkit-appearance:none!important;
+            width:12px;
+            height:12px;
+            background-color: white;
+            border-radius:50%;
+            cursor: pointer;
+        }
+        .kmediaProgress{
+            position: relative;
+            margin: 0 auto;
+            width: 100%;
+            height: inherit;
+            background: rgba(0,0,0,.3);
+            border-radius: 4px;
+        }
+        .kmediaProgress > div{
+            background-color: #1F96DB;
+            border-radius: 4px;
+        }
+        .kmediaProgress > div > div{
+            background-color: #1F96DB;
+            border-radius: 50%;
+        }
+        /*  simple-controls.css */
+    </style>
+    <script src="../dist/KMedia.js"></script>
+    <script src="../dist/SimpleControls.js"></script>
+</head>
+<body>
+<div id="container"></div>
+
+<button id="d1">新增目标</button>
+<button id="d2">新增目标确认</button>
+<button id="d3">添加起点</button>
+<button id="d4">添加起点确认</button>
+<button id="d5">添加终点</button>
+<button id="d6">添加终点确认</button>
+<button id="d7">预览</button>
+<button id="d8">重新编辑</button>
+
+<script>
+    var media = new KMedia({
+        el:document.querySelector('#container'),
+        src:'1.mp4',
+        edit:true
+    });
+    new SimpleControls({
+        media:media,
+        autoplay:false
+    });
+
+    //新增目标
+    document.getElementById('d1').onclick = function () {
+        media.targetTrack.addTarget('嫌疑人');
+        console.log('正在新增目标...');
+    };
+    //新增目标确认
+    document.getElementById('d2').onclick = function () {
+        media.targetTrack.addTargetOK();
+        console.log('新增目标成功！');
+    };
+    //添加起点
+    document.getElementById('d3').onclick = function () {
+        media.targetTrack.addStartPoint();
+        console.log('正在添加起点...');
+    };
+    //添加起点确认
+    document.getElementById('d4').onclick = function () {
+        media.targetTrack.addStartPointOK();
+        console.log('添加起点成功！');
+    };
+    //添加终点
+    document.getElementById('d5').onclick = function () {
+        media.targetTrack.addEndPoint();
+        console.log('正在添加终点...');
+    };
+    //添加终点确认
+    document.getElementById('d6').onclick = function () {
+        media.targetTrack.addEndPointOK();
+        console.log('添加终点成功！');
+    };
+    //预览
+    document.getElementById('d7').onclick = function () {
+        media.targetTrack.preview();
+        console.log('正在预览...');
+    };
+    //重新编辑
+    document.getElementById('d8').onclick = function () {
+        media.targetTrack.reEdit();
+        console.log('现在可以重新编辑.');
+    };
+</script>
+</body>
+</html>
