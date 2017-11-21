@@ -74,6 +74,7 @@ module.exports = function (media) {
 
     // 新增目标确认
     this.addTargetOK = function () {
+        postObject = [];
         $.each(targetTrack.targets,function (k,v) {
             var o = {};
             o.width = v.width / bgRect.width;
